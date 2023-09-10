@@ -1,20 +1,19 @@
 const notes = [];
 
+
+// Creation of intances for notes
 class NotesCreator {
 
-    // Creation of intances for notes
     constructor(title, body, date) {
         this.title = title;
         this.body = body;
         this.date = date;
+        this.data = () => (`Tilte: ${this.title}\nBody: ${this.body}\nDate: ${this.date}`);
+           
     }
-/*
-getNotes () {
-    console.log(notes)
-}
-*/
-}
 
+}
+// CRUD functions
 
 function createNote(title, body, date, ) {
     const newNote = new NotesCreator(title, body, date);
@@ -22,20 +21,29 @@ function createNote(title, body, date, ) {
     alert("La nota ha sido creada!,")
 }
 
-function readNote(){
-
+function readNote(title){
+    const noteToRead = notes.find(note => note.title === title);
+    if (noteToRead) {
+        alert(noteToRead.data())
+    }
+    else {
+        alert("No tienes esa nota creada :c")
+    }
 }
 
-function updateNote(){
+function updateNote(title, body){
     
 }
 
-function deleteNote(){
+function deleteNote(title){
     
 }
+
+
+// MAIN program
 
 function main() {
-    let userInput = prompt('Bienvenido al creador de notas, para crear una nota escribe: "Create", para leer una nota escribe: "Read", para actualizar la nota escribe: "Update" y para borrar una nota: "Delete".')
+    let userInput = prompt('Bienvenido al creador de notas, para crear una nota escribe: "Create", para leer una nota escribe: "Read", para actualizar la nota escribe: "Update" y para borrar una nota: "Delete"., hay algunos comandos escondidos; descubrelos :)')
 
     while (userInput.toLowerCase() !== 'exit') {
         if (userInput.toLowerCase() === 'create') {
@@ -45,8 +53,8 @@ function main() {
             createNote(title, body, date);
         } 
         else if (userInput.toLowerCase() === 'read') {
-            let title = prompt("Escribe el nombre de la nota que quieres leer")
-            notes.find(title)
+            let titleToRead = prompt("Escribe el nombre de la nota que quieres leer")
+            readNote(titleToRead)
         }
         else if (userInput.toLowerCase() === 'update') {
 
@@ -54,7 +62,17 @@ function main() {
         else if (userInput.toLowerCase() === 'delete') {
 
         }
-        alert(notes)
+        else if (userInput.toLowerCase() === 'all'){
+            if (notes.length === 0) {
+                alert("No tienes notas creadas aún.");
+            } else {
+                let allTitles = "Títulos de todas las notas:\n";
+                notes.forEach((note) => {
+                    allTitles += `- ${note.title}\n`;
+                });
+                alert(allTitles);
+            }
+        }
         userInput = prompt('Escriba "Create", "Read", "Update", "Delete" o "Exit" para salir');
     }
 }
