@@ -32,6 +32,15 @@ function readNote(title){
 }
 
 function updateNote(title, body){
+    const noteToUpdate = notes.find(note => note.title === title);
+    if (noteToUpdate) {
+        let updateTitle = prompt("Escribe el nuevo titulo");
+        let updateBody  = prompt("Escribe la nueva nota");
+        noteToUpdate.title = updateTitle
+        noteToUpdate.body = updateBody
+
+        
+    }
     
 }
 
@@ -57,6 +66,8 @@ function main() {
             readNote(titleToRead)
         }
         else if (userInput.toLowerCase() === 'update') {
+            let titleToUpdate = prompt("Escribe el nombre de la nota a actualizar")
+            updateNote(titleToUpdate)
 
         }
         else if (userInput.toLowerCase() === 'delete') {
