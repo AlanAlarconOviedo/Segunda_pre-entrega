@@ -38,13 +38,15 @@ function updateNote(title, body){
         let updateBody  = prompt("Escribe la nueva nota");
         noteToUpdate.title = updateTitle
         noteToUpdate.body = updateBody
-
-        
+        alert("La nota ha sido actualizada")
     }
+    else {alert("la nota no fue encontrada")}
     
 }
 
 function deleteNote(title){
+
+    console.log("Funcion por implementar")
     
 }
 
@@ -71,6 +73,8 @@ function main() {
 
         }
         else if (userInput.toLowerCase() === 'delete') {
+
+            deleteNote()
 
         }
         else if (userInput.toLowerCase() === 'all'){
